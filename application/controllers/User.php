@@ -32,7 +32,7 @@ class User extends CI_Controller
 
         $this->load->model('Device_model', 'device');
         $data['device'] = $this->device->getDevice();
-        
+
         $this->load->model('Condition_model', 'devices');
         $data['devices'] = $this->devices->getConditon();
 
@@ -46,7 +46,7 @@ class User extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $token = htmlspecialchars($this->input->post('token'), TRUE);
-            
+
             $this->db->set('device_id', $token);
             $this->db->where('id', $data['user']['id']);
             $this->db->update('user');
@@ -141,14 +141,14 @@ class User extends CI_Controller
                 $this->load->model('Penentuan_model', 'pengapuran');
                 $data['pengapuran'] = $this->pengapuran->getRegression($jumlah);
 
-                $this->load->model('Penentuan_model', 'pengapuran');
-                $data['result'] = $this->pengapuran->getResult();
+                // $this->load->model('Penentuan_model', 'pengapuran');
+                // $data['result'] = $this->pengapuran->getResult();
 
                 $params = [
                     'measurement_id' => $latestData->id,
                     'device_id' => 1,
                     'score' => $data['pengapuran'] * $latestData->surfac_area,
-                    'created_at' => time()
+                    'created_at' => date('F')
                 ];
 
                 $this->db->insert('measurement_result', $params);
@@ -159,15 +159,18 @@ class User extends CI_Controller
         }
     }
 
-    public function histori()
+    public function history()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Histori';
+        $data['title'] = 'History';
+
+        $this->load->model('History_model', 'result');
+        $data['result'] = $this->result->getResult();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('user/pengapuran', $data);
+        $this->load->view('user/history', $data);
         $this->load->view('templates/footer');
     }
 

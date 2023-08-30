@@ -307,7 +307,7 @@ class Admin extends CI_Controller
         $this->load->model('Condition_model', 'devices');
         $data['devices'] = $this->devices->getConditon();
 
-        $this->form_validation->set_rules('token', 'Token', 'required|trim|min_length[16]|max_length[16]');
+        $this->form_validation->set_rules('token', 'Token', 'required|trim|min_length[16]|max_length[16]|is_unique[devices.token]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -320,7 +320,7 @@ class Admin extends CI_Controller
             
             $data = [
                 'token' => $token,
-                'date_created' => time()
+                'date' => time()
             ];
 
             $this->db->insert('devices', $data);

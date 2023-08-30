@@ -29,7 +29,7 @@
                             <tr>
                                 <th scope=" row" id="number"><?= $i; ?></th>
                                 <td id="token"><?= $d['token']; ?></td>
-                                <td id="date"><?= date('d M Y H:i:s', $d['date_created']); ?></td>
+                                <td id="date"><?= date('d M Y H:i:s', $d['date']); ?></td>
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#updateData<?= $d['id']; ?>" class="badge badge-success">edit</a>
                                     <a href="#" data-toggle="modal" data-target="#delete<?= $d['id']; ?>" class="badge badge-danger">delete</a>

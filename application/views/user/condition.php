@@ -174,7 +174,7 @@
                                 <?php $i = 1; ?>
                                 <?php foreach ($kondisi as $k) : ?>
                                     <tr>
-                                        <th scope=" row" id="number"><?= $i; ?></th>
+                                        <th scope="row"><?= $i; ?></th>
                                         <td id="token"><?= $k['token']; ?></td>
                                         <td><span id="ph"><?= $k['ph']; ?></span></td>
                                         <td id="date"><?= date('d M Y H:i:s', $k['date']); ?></td>
@@ -186,22 +186,22 @@
                     </div> -->
                     <?php foreach ($kondisi as $k) : ?>
                         <?php
-                            $persen = ($k['ph']/7) * 100;
+                        $persen = ($k['ph'] / 7) * 100;
                         ?>
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-3 mb-4">
 
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Kadar Keasaman</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Kadar Keasaman (Saat ini)</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary"><?= $k['token']; ?></h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold"><?= $k['token']; ?><span class="float-right"><?= $k['ph']; ?></span></h4>
-                                    <div class="progress mb-3">
-                                        <div class="progress-bar <?= $persen < 50 ? 'bg-danger' : 'bg-success' ?>" role="progressbar" style="width: <?= $persen; ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <h4 class="font-weight-bold text-center display-2" id="ph"><?= $k['ph']; ?></h4>
+                                    <div class="mb-3">
+                                        <h4 class="small font-weight-bold"><?= date('d M Y H:i:s', $k['date']); ?></h4>
                                     </div>
-                                    <h4 class="small font-weight-bold text-center"><?= date('d M Y H:i:s', $k['date']); ?></h4>
                                 </div>
                             </div>
                         </div>
@@ -266,60 +266,60 @@
     <script src="<?= base_url('jquery/'); ?>jquery.min.js"></script>
 
     <script>
-        // $(document).ready(function() {
-        //     // atur interval waktu untuk realtime
+        $(document).ready(function() {
+            // atur interval waktu untuk realtime
 
-        //     setInterval(function() {
-        //         fetch("http://localhost/siperan/user/getDataFromLand")
-        //             .then(response => {
-        //                 if (response.ok) {
-        //                     return response.json();
-        //                 }
-        //             })
-        //             .then(data => {
-        //                 // console.log(data.kondisi);
-        //                 data.kondisi.forEach(phData => {
-        //                     const ph = document.getElementById("ph");
-        //                     const token = document.getElementById("token");
-        //                     const number = document.getElementById("number");
-        //                     const date = document.getElementById("date");
+            setInterval(function() {
+                fetch("http://localhost/siperan/user/getDataFromLand")
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                    })
+                    .then(data => {
+                        // console.log(data.kondisi);
+                        data.kondisi.forEach(phData => {
+                            const ph = document.getElementById("ph");
+                            const token = document.getElementById("token");
+                            const number = document.getElementById("number");
+                            const date = document.getElementById("date");
 
-        //                     const unixTimestamp = parseInt(phData.date_created); // Replace with your Unix timestamp
+                            const unixTimestamp = parseInt(phData.date_created); // Replace with your Unix timestamp
 
-        //                     // Convert Unix timestamp to milliseconds
-        //                     const milliseconds = unixTimestamp * 1000;
+                            // Convert Unix timestamp to milliseconds
+                            const milliseconds = unixTimestamp * 1000;
 
-        //                     // Create a Date object using the milliseconds
-        //                     const dateObject = new Date(milliseconds);
+                            // Create a Date object using the milliseconds
+                            const dateObject = new Date(milliseconds);
 
-        //                     const day = dateObject.toLocaleString('default', {
-        //                         day: '2-digit'
-        //                     });
-        //                     const month = dateObject.toLocaleString('default', {
-        //                         month: 'short'
-        //                     });
-        //                     const year = dateObject.getFullYear();
-        //                     const hour = dateObject.getHours();
-        //                     const minute = dateObject.getMinutes();
-        //                     const second = dateObject.getSeconds().toString().padStart(2, '0');
+                            const day = dateObject.toLocaleString('default', {
+                                day: '2-digit'
+                            });
+                            const month = dateObject.toLocaleString('default', {
+                                month: 'short'
+                            });
+                            const year = dateObject.getFullYear();
+                            const hour = dateObject.getHours();
+                            const minute = dateObject.getMinutes();
+                            const second = dateObject.getSeconds().toString().padStart(2, '0');
 
-        //                     // Format the components as a string
-        //                     const formattedDateTime = day + ' ' + month + ' ' + year + ' ' + hour + ':' + minute + ':' + second;
+                            // Format the components as a string
+                            const formattedDateTime = day + ' ' + month + ' ' + year + ' ' + hour + ':' + minute + ':' + second;
 
 
-        //                     ph.innerHTML = phData.ph;
-        //                     token.innerHTML = phData.token;
-        //                     number.innerHTML = phData.id;
-        //                     date.innerHTML = formattedDateTime;
-        //                 });
-        //             })
-        //             .catch(error => {
-        //                 console.log(error)
-        //             })
+                            ph.innerHTML = phData.ph;
+                            token.innerHTML = phData.token;
+                            number.innerHTML = phData.id;
+                            date.innerHTML = formattedDateTime;
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
 
-        //         // $('#cekph').load("<?php echo site_url('user/getDataFromLand') ?>");
-        //     }, 1000); //untuk satu detik
-        // });
+                // $('#cekph').load("<?php echo site_url('user/getDataFromLand') ?>");
+            }, 1000); //untuk satu detik
+        });
 
         $('.custom-file-input').on('change', function() {
             let fileName = $(this).val().split('\\').pop();
