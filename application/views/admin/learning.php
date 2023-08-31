@@ -1,49 +1,53 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 mt-5 text-gray-800">Data Latih</h1>
-
     <div class="row">
-        <div class="col-md-6">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
+        <div class="col-lg-6">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Latih</h6>
                 </div>
-            <?php endif; ?>
+                <div class="card-body">
+                    <?php if (validation_errors()) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= validation_errors(); ?>
+                        </div>
+                    <?php endif; ?>
 
-            <?= $this->session->flashdata('message'); ?>
-            <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newData">Tambah Data Latih</a>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">pH Min</th>
-                            <th scope="col">pH Max</th>
-                            <th scope="col">Pengapuran</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($latih as $l) : ?>
-                            <tr>
-                                <th scope=" row" id="number"><?= $i; ?></th>
-                                <td><?= $l['ph_min']; ?></td>
-                                <td><?= $l['ph_max']; ?></td>
-                                <td><?= $l['calcification']; ?></td>
-                                <td><?= $l['total']; ?></td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#updateData<?= $l['id']; ?>" class="badge badge-success">edit</a>
-                                    <a href="#" data-toggle="modal" data-target="#delete<?= $l['id']; ?>" class="badge badge-danger">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                    <?= $this->session->flashdata('message'); ?>
+                    <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newData">Tambah Data Latih</a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th>pH Min</th>
+                                    <th>pH Max</th>
+                                    <th>Pengapuran</th>
+                                    <th>Total</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($latih as $l) : ?>
+                                    <tr>
+                                        <th scope=" row" id="number"><?= $i; ?></th>
+                                        <td><?= $l['ph_min']; ?></td>
+                                        <td><?= $l['ph_max']; ?></td>
+                                        <td><?= $l['calcification']; ?></td>
+                                        <td><?= $l['total']; ?></td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#updateData<?= $l['id']; ?>" class="badge badge-success">edit</a>
+                                            <a href="#" data-toggle="modal" data-target="#delete<?= $l['id']; ?>" class="badge badge-danger">delete</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

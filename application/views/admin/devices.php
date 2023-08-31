@@ -2,43 +2,49 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-md-6">
-            <!-- Page Heading -->
-            <h1 class="h3 mb-4 mt-3 text-gray-800">Kelola Perangkat</h1>
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
+        <div class="col-lg-8">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Kelola Perangkat</h6>
                 </div>
-            <?php endif; ?>
+                <div class="card-body">
+                    <?php if (validation_errors()) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= validation_errors(); ?>
+                        </div>
+                    <?php endif; ?>
 
-            <?= $this->session->flashdata('message'); ?>
-            <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newData">Tambah Perangkat</a>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Token</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($devices as $d) : ?>
-                            <tr>
-                                <th scope=" row" id="number"><?= $i; ?></th>
-                                <td id="token"><?= $d['token']; ?></td>
-                                <td id="date"><?= date('d M Y H:i:s', $d['date']); ?></td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#updateData<?= $d['id']; ?>" class="badge badge-success">edit</a>
-                                    <a href="#" data-toggle="modal" data-target="#delete<?= $d['id']; ?>" class="badge badge-danger">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                    <?= $this->session->flashdata('message'); ?>
+                    <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newData">Tambah Perangkat</a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Token</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($devices as $d) : ?>
+                                    <tr>
+                                        <th scope=" row" id="number"><?= $i; ?></th>
+                                        <td id="token"><?= $d['token']; ?></td>
+                                        <td id="date"><?= date('d M Y H:i:s', $d['date']); ?></td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#updateData<?= $d['id']; ?>" class="badge badge-success">edit</a>
+                                            <a href="#" data-toggle="modal" data-target="#delete<?= $d['id']; ?>" class="badge badge-danger">delete</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

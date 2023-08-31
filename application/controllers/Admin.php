@@ -295,7 +295,7 @@ class Admin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('determination');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Dihapus</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
         redirect('admin/learning');
     }
 
@@ -365,7 +365,7 @@ class Admin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('devices');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Perangkat Berhasil Dihapus</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Perangkat Berhasil Dihapus</div>');
         redirect('admin/devices');
     }
 }

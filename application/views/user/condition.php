@@ -159,31 +159,6 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 mt-3 text-gray-800">Data Kondisi Lahan</h1>
-
-                    <!-- <div class="table-responsive">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Token</th>
-                                    <th scope="col">pH</th>
-                                    <th scope="col">Tanggal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($kondisi as $k) : ?>
-                                    <tr>
-                                        <th scope="row"><?= $i; ?></th>
-                                        <td id="token"><?= $k['token']; ?></td>
-                                        <td><span id="ph"><?= $k['ph']; ?></span></td>
-                                        <td id="date"><?= date('d M Y H:i:s', $k['date']); ?></td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div> -->
                     <!-- Content Column -->
                     <div class="col-lg-3 mb-4">
 

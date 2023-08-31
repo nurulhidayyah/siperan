@@ -42,7 +42,7 @@
             </section>
             <h3>Rekomendasi Pemberian Kapur</h3>
             <?php if (!empty($rekomendasi['score'])) : ?>
-                <label class="btn btn-success"><?= $rekomendasi['score']; ?></label>
+                <label class="btn btn-success"><?= $rekomendasi['score']; ?> Kg</label>
             <?php else : ?>
                 <label>0</label>
             <?php endif; ?>

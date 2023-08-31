@@ -1,7 +1,7 @@
             <!-- Footer -->
             <footer class="sticky-footer bg-white" style="margin-top: 35%;">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="copyright text-center my-auto text-gray-600">
                         <span>Copyright &copy; SIPERAN <?= date('Y'); ?></span>
                     </div>
                 </div>
