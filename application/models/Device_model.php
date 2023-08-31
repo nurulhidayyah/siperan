@@ -15,12 +15,12 @@ class Device_model extends CI_Model
                 ";
         return $this->db->query($query)->row_array();
     }
-    public function getDevicebyid($id)
+    public function getDevicebyid($device, $user)
     {
-        $query = "SELECT `user`.*, `devices`.`token`,`ph`,`date`
+        $query = "SELECT `user`.`id`, `devices`.*
                   FROM `user` JOIN `devices`
                   ON `user`.`device_id` = `devices`.`id`
-                  WHERE `user`.`device_id` = $id
+                  WHERE `user`.`device_id` = $device AND `user`.`id` = $user
                 ";
         return $this->db->query($query)->result_array();
     }

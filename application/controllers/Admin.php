@@ -302,7 +302,7 @@ class Admin extends CI_Controller
     public function devices()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Perangkat Saya';
+        $data['title'] = 'Kelola Perangkat';
         
         $this->load->model('Condition_model', 'devices');
         $data['devices'] = $this->devices->getConditon();

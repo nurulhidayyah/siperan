@@ -184,25 +184,26 @@
                             </tbody>
                         </table>
                     </div> -->
-                    <?php foreach ($kondisi as $k) : ?>
-                        <!-- Content Column -->
-                        <div class="col-lg-3 mb-4">
+                    <!-- Content Column -->
+                    <div class="col-lg-3 mb-4">
 
+                        <?php foreach ($kondisi as $k) : ?>
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Kadar Keasaman (Saat ini)</h6>
-                                    <h6 class="m-0 font-weight-bold text-primary"><?= $k['token']; ?></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" id="token"><?= $k['token']; ?></h6>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="font-weight-bold text-center display-2" id="ph"><?= $k['ph']; ?></h4>
                                     <div class="mb-3">
-                                        <h4 class="small font-weight-bold"><?= date('d M Y H:i:s', $k['date']); ?></h4>
+                                        <h4 class="small font-weight-bold" id="date"><?= date('d M Y H:i:s', $k['date']); ?></h4>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -267,7 +268,7 @@
             // atur interval waktu untuk realtime
 
             setInterval(function() {
-                fetch("http://localhost/siperan/user/getDataFromLand")
+                fetch("http://192.168.137.1/siperan/user/getDataFromLand")
                     .then(response => {
                         if (response.ok) {
                             return response.json();
@@ -278,10 +279,9 @@
                         data.kondisi.forEach(phData => {
                             const ph = document.getElementById("ph");
                             const token = document.getElementById("token");
-                            const number = document.getElementById("number");
                             const date = document.getElementById("date");
 
-                            const unixTimestamp = parseInt(phData.date_created); // Replace with your Unix timestamp
+                            const unixTimestamp = parseInt(phData.date); // Replace with your Unix timestamp
 
                             // Convert Unix timestamp to milliseconds
                             const milliseconds = unixTimestamp * 1000;
@@ -306,9 +306,9 @@
 
                             ph.innerHTML = phData.ph;
                             token.innerHTML = phData.token;
-                            number.innerHTML = phData.id;
                             date.innerHTML = formattedDateTime;
                         });
+                        console.log(data);
                     })
                     .catch(error => {
                         console.log(error)
