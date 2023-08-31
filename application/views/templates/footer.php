@@ -38,6 +38,104 @@
                 </div>
             </div>
 
+            <!-- grafik pH -->
+            <script src="<?= base_url('assets/js/cdn.jsdelivr.net_npm_chart.js'); ?>" crossorigin="anonymous"></script>
+
+            <script>
+                $(document).ready(function() {
+                    $.ajax({
+                        url: '<?= base_url('user/getAverage'); ?>',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            var dataFromDatabase = response;
+                            var labels = [];
+                            var values = [];
+
+                            $.each(dataFromDatabase.average_jan, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_feb, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_mar, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_apr, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_mei, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_june, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_july, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_august, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_sept, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_okt, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_nov, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            $.each(dataFromDatabase.average_des, function(index, data) {
+                                labels.push(data.month);
+                                values.push(data.average);
+                            });
+
+                            var pHData = {
+                                labels: labels,
+                                datasets: [{
+                                    label: "pH Tanah",
+                                    data: values,
+                                    backgroundColor: "rgba(52, 152, 219, 0.5)"
+                                }]
+                            };
+
+                            var ctx = document.getElementById("pHChart").getContext("2d");
+                            var pHChart = new Chart(ctx, {
+                                type: "line",
+                                data: pHData
+                            });
+
+                            console.log(dataFromDatabase);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            </script>
+
             <!-- Bootstrap core JavaScript-->
             <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
             <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -47,13 +145,6 @@
 
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-
-            <!-- Page level plugins -->
-            <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
-            <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-            <!-- Page level custom scripts -->
-            <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
             <!-- Ajax untuk realtime -->
             <script src="<?= base_url('jquery/'); ?>jquery.min.js"></script>

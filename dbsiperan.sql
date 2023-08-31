@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2023 at 04:00 PM
+-- Generation Time: Sep 01, 2023 at 01:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -65,16 +65,16 @@ CREATE TABLE `devices` (
   `id` int(11) NOT NULL,
   `token` varchar(255) NOT NULL,
   `ph` float DEFAULT NULL,
-  `date_created` varchar(255) NOT NULL
+  `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `devices`
 --
 
-INSERT INTO `devices` (`id`, `token`, `ph`, `date_created`) VALUES
-(1, '25FDnN8N2hMzY6hP', 6.69, '1691761777'),
-(6, '9Xhqf13L76jRIRvF', 12, '1691760582');
+INSERT INTO `devices` (`id`, `token`, `ph`, `date`) VALUES
+(1, '25FDnN8N2hMzY6hP', 5, '1692120874'),
+(6, '9Xhqf13L76jRIRvF', 5.5, '1693368037');
 
 -- --------------------------------------------------------
 
@@ -84,9 +84,9 @@ INSERT INTO `devices` (`id`, `token`, `ph`, `date_created`) VALUES
 
 CREATE TABLE `measurement` (
   `id` int(11) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `surfac_area` float NOT NULL,
-  `place_name` varchar(255) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `surfac_area` double NOT NULL,
+  `place_name` text NOT NULL,
   `created_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -95,25 +95,16 @@ CREATE TABLE `measurement` (
 --
 
 INSERT INTO `measurement` (`id`, `user_id`, `surfac_area`, `place_name`, `created_at`) VALUES
-(1, '6', 10000, 'Sawah Luhur', '1691502220'),
-(2, '6', 5000, 'Sawah Luhur', '1691502364'),
-(3, '6', 10000, 'Sawah Luhur', '1691502535'),
-(4, '6', 10000, 'Sawah Luhur', '1691503013'),
-(5, '6', 10000, 'Sawah Luhur', '1691506645'),
-(6, '6', 10000, 'Sawah Luhur', '1691507684'),
-(7, '6', 10000, 'Sawah Luhur', '1691507798'),
-(8, '6', 2500, 'Sawah Luhur', '1691507830'),
-(9, '6', 10000, 'Sawah Luhur', '1691508769'),
-(10, '6', 10000, 'Sawah Luhur', '1691508867'),
-(11, '6', 20000, 'Sawah Luhur', '1691509895'),
-(12, '6', 2500, 'Sawah Luhur', '1691510065'),
-(13, '10', 100000, 'Pekarungan', '1691511597'),
-(14, '10', 100000, 'Pekarungan', '1691511682'),
-(15, '6', 10000, 'Sawah Luhur', '1691524722'),
-(16, '6', 10000, 'Sawah Luhur', '1691524733'),
-(17, '6', 100000, 'Sawah Luhur', '1691524781'),
-(18, '6', 10000, 'Sawah Luhur', '1691544758'),
-(19, '6', 10000, 'Sawah Luhur', '1691658326');
+(1, 6, 10000, 'Sawah Luhur', '1693463570'),
+(2, 6, 20000, 'Sawah Luhur', '1693463593'),
+(3, 6, 80000, 'Sawah Luhur', '1693463603'),
+(4, 6, 10000, 'Jawilan', '1693463613'),
+(5, 6, 80000, 'Jawilan', '1693463621'),
+(6, 6, 20000, 'Ciruas', '1693463627'),
+(7, 6, 100000, 'Ciruas', '1693463633'),
+(8, 6, 80000, 'pontang', '1693463640'),
+(9, 6, 400000, 'pontang', '1693463667'),
+(10, 6, 100000, 'Kasemen', '1693502496');
 
 -- --------------------------------------------------------
 
@@ -125,34 +116,26 @@ CREATE TABLE `measurement_result` (
   `id` int(11) NOT NULL,
   `measurement_id` bigint(20) NOT NULL,
   `device_id` bigint(20) NOT NULL,
-  `score` float NOT NULL,
-  `created_at` varchar(255) NOT NULL
+  `ph` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `measurement_result`
 --
 
-INSERT INTO `measurement_result` (`id`, `measurement_id`, `device_id`, `score`, `created_at`) VALUES
-(1, 1, 1, 67498800, '1691502220'),
-(2, 2, 1, 33749400, '1691502364'),
-(3, 3, 1, 67498800, '1691502535'),
-(4, 4, 1, -16648100, '1691503013'),
-(5, 5, 1, 0, '1691506645'),
-(6, 6, 1, 0, '1691507684'),
-(7, 7, 1, 272016000, '1691507798'),
-(8, 8, 1, 13949800, '1691507830'),
-(9, 9, 1, 0, '1691508769'),
-(10, 10, 1, 4499.96, '1691508867'),
-(11, 11, 1, 8999.92, '1691509895'),
-(12, 12, 1, 0, '1691510065'),
-(13, 13, 1, 0, '1691511597'),
-(14, 14, 1, 44999.6, '1691511682'),
-(15, 15, 1, 4499.96, '1691524722'),
-(16, 16, 1, 4499.96, '1691524733'),
-(17, 17, 1, 44999.6, '1691524781'),
-(18, 18, 1, 697.617, '1691544758'),
-(19, 19, 1, 13499.6, '1691658326');
+INSERT INTO `measurement_result` (`id`, `measurement_id`, `device_id`, `ph`, `score`, `created_at`) VALUES
+(1, 1, 1, 1, 4500, '2023-05-01 06:43:15'),
+(2, 2, 1, 3, 9000, '2023-05-06 17:00:00'),
+(3, 3, 1, 4, 36000, '2023-05-20 06:43:28'),
+(4, 4, 1, 4, 4500, '2023-06-02 06:44:10'),
+(5, 5, 1, 5, 36000, '2023-06-20 06:33:41'),
+(6, 6, 1, 2, 9000, '2023-07-01 06:48:41'),
+(7, 7, 1, 4, 45000, '2023-07-27 06:48:48'),
+(8, 8, 1, 7, 36000, '2023-08-11 06:44:47'),
+(9, 9, 1, 7, 179998, '2023-08-31 06:44:53'),
+(10, 10, 1, 5, 45000, '2023-08-31 17:21:36');
 
 -- --------------------------------------------------------
 
@@ -176,7 +159,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `device_id`, `date_created`) VALUES
-(6, 'Nurul', 'nurulhidayyah45@gmail.com', 'default.jpg', '$2y$10$fgN4fLu1Lw9h5.KfuVFv9.DCLzDKvLlW/390Pgzh2HAENxlLw7zAq', 1, '1', 1690909502);
+(6, 'Nurul', 'nurulhidayyah45@gmail.com', 'default.jpg', '$2y$10$fgN4fLu1Lw9h5.KfuVFv9.DCLzDKvLlW/390Pgzh2HAENxlLw7zAq', 1, '1', 1690909502),
+(17, 'Paik Hidayah', 'paikhidayah@gmail.com', 'default.jpg', '$2y$10$Rc5XRDEV5b7bIEKhbHhjpuMQBhayxVTy2RoGSNlsoEqLfPlr63LYS', 2, '', 1692110302);
 
 -- --------------------------------------------------------
 
@@ -277,7 +261,7 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (21, 2, 'Kondisi Lahan', 'user/land', 'fas fa-thermometer', 1),
 (22, 1, 'Data Latih', 'admin/learning', 'fab fa-leanpub', 1),
 (23, 2, 'Penentuan', 'user/penentuan', 'fas fa-balance-scale', 1),
-(24, 2, 'Histori', 'user/histori', 'fas fa-history', 1),
+(24, 2, 'History', 'user/history', 'fas fa-history', 1),
 (25, 2, 'Perangkat Saya', 'user/mydevice', 'fas fa-wrench', 1),
 (26, 1, 'Kelola Perangkat', 'admin/devices', 'fas fa-wrench', 1);
 
@@ -372,25 +356,25 @@ ALTER TABLE `determination`
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `measurement`
 --
 ALTER TABLE `measurement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `measurement_result`
 --
 ALTER TABLE `measurement_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -420,7 +404,7 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

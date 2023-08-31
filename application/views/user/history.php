@@ -2,7 +2,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Riwayat Penentuan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,7 +26,7 @@
                                 <td><?= $r['surfac_area']; ?></td>
                                 <td><?= $r['ph']; ?></td>
                                 <td><?= $r['score']; ?></td>
-                                <td><?= $r['created_at']; ?></td>
+                                <td><?= date('d-m-Y', strtotime($r['created_at'])); ?></td>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>

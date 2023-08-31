@@ -185,9 +185,6 @@
                         </table>
                     </div> -->
                     <?php foreach ($kondisi as $k) : ?>
-                        <?php
-                        $persen = ($k['ph'] / 7) * 100;
-                        ?>
                         <!-- Content Column -->
                         <div class="col-lg-3 mb-4">
 

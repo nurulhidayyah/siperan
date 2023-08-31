@@ -35,6 +35,11 @@
             </form>
         </div>
         <div class="col-md-6 text-center">
+
+            <section class="graph">
+                <!-- Di sini akan ditampilkan grafik pH tanah -->
+                <canvas id="pHChart"></canvas>
+            </section>
             <h3>Rekomendasi Pemberian Kapur</h3>
             <?php if (!empty($rekomendasi['score'])) : ?>
                 <label class="btn btn-success"><?= $rekomendasi['score']; ?></label>
