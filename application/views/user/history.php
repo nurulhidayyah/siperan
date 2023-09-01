@@ -1,4 +1,6 @@
+<!-- Begin Page Content -->
 <div class="container-fluid">
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -37,3 +39,7 @@
     </div>
 
 </div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->

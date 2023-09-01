@@ -1,5 +1,5 @@
             <!-- Footer -->
-            <footer class="sticky-footer bg-white" style="margin-top: 35%;">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto text-gray-600">
                         <span>Copyright &copy; SIPERAN <?= date('Y'); ?></span>

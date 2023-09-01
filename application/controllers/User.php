@@ -11,18 +11,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Dashboard User';
-        // $this->load->model('Pengaduan_model', 'pengaduan');
-        // $data['aksesHariIni'] = $this->pengaduan->getDataHarian();
-        // $data['jumlahAkses'] = $this->pengaduan->getData();
-        // $data['terlayani'] = $this->pengaduan->getDataTerlayani();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
+        redirect('setting');
     }
 
     public function mydevice()

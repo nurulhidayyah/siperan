@@ -14,21 +14,38 @@
             <?= $this->session->flashdata('message'); ?>
 
             <?php if (!empty($device)) : ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary"><?= $device['token']; ?></h6>
-                            </div>
-                            <div class="card-body text-center">
-                                <p><?= date('d M Y H:i:s', $device['date']); ?></p>
-                                <a href="#" class="btn btn-success mb-3 d-inline-block" data-toggle="modal" data-target="#newData">Ubah Perangkat</a>
-                            </div>
+                <?php if ($user['device_id'] === NULL) : ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Belum Terhubung Dengan Perangkat</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <a href="#" class="btn btn-success mb-3 d-inline-block" data-toggle="modal" data-target="#newData">Ubah Perangkat</a>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php else : ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary"><?= $device['token']; ?></h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <p><?= date('d M Y H:i:s', $device['date']); ?></p>
+                                    <a href="#" class="btn btn-success mb-3 d-inline-block" data-toggle="modal" data-target="#newData">Ubah Perangkat</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
             <?php else : ?>
                 <p>Belum ada perangkat yang tersedia</p>
             <?php endif; ?>
