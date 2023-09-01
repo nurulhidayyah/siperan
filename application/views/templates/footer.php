@@ -183,7 +183,6 @@
 
             <!-- DataTable -->
             <script>
-
                 $(document).ready(function() {
                     // Hentikan DataTable sebelumnya (jika ada)
                     if ($.fn.DataTable.isDataTable('#dataTable')) {
@@ -195,7 +194,6 @@
                         "bInfo": false, // Sembunyikan informasi tabel
                         "columnDefs": [{
                             "searchable": true,
-                            "targets": [1, 2, 3, 4, 5]
                         }] // Kolom yang bisa di-filter
                     });
 

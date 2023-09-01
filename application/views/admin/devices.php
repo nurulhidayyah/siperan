@@ -1,6 +1,5 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <div class="row">
         <div class="col-lg-8">
             <!-- DataTales Example -->
@@ -48,8 +47,8 @@
             </div>
         </div>
     </div>
-
 </div>
+
 <!-- /.container-fluid -->
 
 </div>
