@@ -7,6 +7,24 @@
             <h6 class="m-0 font-weight-bold text-primary">Riwayat Penentuan</h6>
         </div>
         <div class="card-body">
+            <!-- Input filter -->
+            <!-- <div class="form-row mb-3">
+                <div class="col">
+                    <input type="text" class="form-control" id="filterNamaTempat" placeholder="Nama Tempat">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="filterLuasLahan" placeholder="Luas Lahan">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="filterKadarKeasaman" placeholder="Kadar Keasaman">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="filterJumlahPengapuran" placeholder="Jumlah Pengapuran">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="filterBulan" placeholder="Bulan">
+                </div>
+            </div> -->
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

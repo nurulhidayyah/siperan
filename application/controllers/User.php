@@ -109,6 +109,7 @@ class User extends CI_Controller
 
         $this->load->model('Penentuan_model', 'pengapuran');
         $data['pengapuran'] = $this->pengapuran->getRegression($jumlah);
+        
         $query = $this->db->select('*')
             ->from('measurement_result')
             ->order_by('created_at', 'DESC') // Assuming there's a 'created_at' column

@@ -176,6 +176,48 @@
                 });
             </script>
 
+            <!-- DataTables -->
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
+            <!-- DataTable -->
+            <script>
+
+                $(document).ready(function() {
+                    // Hentikan DataTable sebelumnya (jika ada)
+                    if ($.fn.DataTable.isDataTable('#dataTable')) {
+                        $('#dataTable').DataTable().destroy();
+                    }
+                    // Inisialisasi DataTables
+                    var table = $('#dataTable').DataTable({
+                        "bFilter": true, // Aktifkan filter
+                        "bInfo": false, // Sembunyikan informasi tabel
+                        "columnDefs": [{
+                            "searchable": true,
+                            "targets": [1, 2, 3, 4, 5]
+                        }] // Kolom yang bisa di-filter
+                    });
+
+                    // Inisialisasi input filter
+                    $('#filterNamaTempat').on('keyup', function() {
+                        table.columns(1).search(this.value).draw();
+                    });
+                    $('#filterLuasLahan').on('keyup', function() {
+                        table.columns(2).search(this.value).draw();
+                    });
+                    $('#filterKadarKeasaman').on('keyup', function() {
+                        table.columns(3).search(this.value).draw();
+                    });
+                    $('#filterJumlahPengapuran').on('keyup', function() {
+                        table.columns(4).search(this.value).draw();
+                    });
+                    $('#filterBulan').on('keyup', function() {
+                        table.columns(5).search(this.value).draw();
+                    });
+
+                });
+            </script>
             </body>
 
             </html>

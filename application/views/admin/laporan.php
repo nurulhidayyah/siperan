@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
         </div>
         <div class="card-body">
-            <a target="_blank" href="<?= base_url('admin/generate_laporan') ?>" class="btn btn-primary mt-2">Preview or Download</a>
+            <a target="_blank" href="<?= base_url('admin/generate_laporan') ?>" class="btn btn-primary mb-2">Preview or Download</a>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

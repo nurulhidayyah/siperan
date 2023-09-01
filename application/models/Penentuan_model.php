@@ -22,14 +22,21 @@ class Penentuan_model extends CI_Model
 
         $n =  $this->db->get('determination')->num_rows(); //total data
 
-        $a = (($y->total * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $xy->total_xy)) / (($n * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $x->total_ph_min));
+        $denominator_a = (($n * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $x->total_ph_min));
 
-        $b = (($n * $xy->total_xy) - ($x->total_ph_min * $y->total)) / (($n * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $x->total_ph_min));
-        $jumlah_pengapuran = $a + ($b * $ph);
-        if ($jumlah_pengapuran < 0) {
-            return 0;
+        if ($denominator_a != 0) {
+            $a = (($y->total * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $xy->total_xy)) / $denominator_a;
+
+            $b = (($n * $xy->total_xy) - ($x->total_ph_min * $y->total)) / (($n * $x_kuadrat->total_x_kuadrat) - ($x->total_ph_min * $x->total_ph_min));
+            $jumlah_pengapuran = $a + ($b * $ph);
+            if ($jumlah_pengapuran < 0) {
+                return 0;
+            }
+            return $jumlah_pengapuran;
+        } else {
+            // Handle error, misalnya dengan menampilkan pesan kesalahan
+            echo '<script>alert("Error: Pembagian oleh nol tidak diperbolehkan, Data latih tidak boleh sama");</script>';
         }
-        return $jumlah_pengapuran;
     }
 
     public function getResult()

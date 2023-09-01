@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800">Rata-rata pH dalam perbulan</h1>
 
     <!-- Content Row -->
-    <div class="row" style="margin-bottom: 450px;">
+    <div class="row">
         <div class="col-sm-8 mb-4">
             <section class="graph">
                 <!-- Di sini akan ditampilkan grafik pH tanah -->
