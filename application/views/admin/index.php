@@ -23,7 +23,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totalPengapuran; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-download fa-2x text-gray-300"></i>
+                                    <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totalLuasLahan; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-envelope fa-2x text-gray-300"></i>
+                                    <i class="fas fa-ruler fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
