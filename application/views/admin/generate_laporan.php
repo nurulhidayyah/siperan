@@ -227,50 +227,27 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th scope="text-right">Nama</th>
-                                            <th scope="text-right">No Identitas</th>
-                                            <th scope="text-right">Laporan</th>
-                                            <th scope="text-right">Tgl P</th>
-                                            <th scope="text-right">Status</th>
-                                            <th scope="text-right">Tanggapan</th>
-                                            <th scope="text-right">Tgl T</th>
+                                            <th>#</th>
+                                            <th align="text-right">Nama Tempat</th>
+                                            <th align="text-right">Luas Lahan</th>
+                                            <th align="text-right">Kadar Keasaman</th>
+                                            <th align="text-right">Jumlah Pengapuran</th>
+                                            <th align="text-right">Bulan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1; ?>
-                                        <?php foreach ($pengaduan as $p) : ?>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($laporan as $l) : ?>
                                             <tr>
-                                                <th class="no"><?= $no++; ?></th>
-                                                <td class="text-left"><?= $p['name'] ?></td>
-                                                <td class="text-left"><?= $p['npm'] ?></td>
-                                                <td class="text-left"><?= $p['title'] ?></td>
-                                                <td class="text-left"><?= date('d-m-Y', $p['created_at']); ?></td>
-                                                <td>
-                                                    <?php
-                                                    if ($p['status'] == '0') :
-                                                        echo '<span class="badge badge-secondary">Sedang di verifikasi</span>';
-                                                    elseif ($p['status'] == '1') :
-                                                        echo '<span class="badge badge-primary">Sedang diproses oleh ' . $p['staff'] . '</span>';
-                                                    elseif ($p['status'] == '3') :
-                                                        echo '<span class="badge badge-primary">Sedang diproses oleh ' . $p['staff'] . '</span>';
-                                                    elseif ($p['status'] == '4') :
-                                                        echo '<span class="badge badge-success">Selesai dikerjakan ' . $p['staff'] . '</span>';
-                                                    elseif ($p['status'] == '2') :
-                                                        echo '<span class="badge badge-danger">Pengaduan ditolak</span>';
-                                                    else :
-                                                        echo '-';
-                                                    endif;
-                                                    ?>
-                                                </td>
-                                                <td><?= $p['tanggapan'] == null ? '-' : $p['tanggapan']; ?></td>
-                                                <td><?= $p['tanggal'] == null ? '-' : date('d-m-Y', $p['tanggal']); ?></td>
+                                                <th scope=" row" id="number"><?= $i; ?></th>
+                                                <td><?= $l['place_name']; ?></td>
+                                                <td><?= $l['surfac_area']; ?></td>
+                                                <td><?= $l['ph']; ?></td>
+                                                <td><?= $l['score']; ?></td>
+                                                <td><?= date('d-m-Y', strtotime($l['created_at'])); ?></td>
                                             </tr>
+                                            <?php $i++; ?>
                                         <?php endforeach; ?>
-                                        <!-- <tr>
-                                            <td class="no">04</td>
-                                            <td class="text-left"> Nurul Hidayah </td>>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </main>

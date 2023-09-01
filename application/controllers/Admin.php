@@ -174,10 +174,10 @@ class Admin extends CI_Controller
     public function laporan()
     {
         $data['title'] = 'Laporan';
-        $data['user'] = $this->db->get_where('staff', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->model('Admin_model', 'pengaduan');
-        $data['pengaduan'] = $this->pengaduan->laporan_pengaduan();
+        $this->load->model('Admin_model', 'laporan');
+        $data['laporan'] = $this->laporan->laporan();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -189,10 +189,10 @@ class Admin extends CI_Controller
     public function generate_laporan()
     {
         $data['title'] = 'Laporan';
-        $data['user'] = $this->db->get_where('staff', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->model('Admin_model', 'pengaduan');
-        $data['pengaduan'] = $this->pengaduan->laporan_pengaduan();
+        $this->load->model('Admin_model', 'laporan');
+        $data['laporan'] = $this->laporan->laporan();
 
         $html = $this->load->view('admin/generate_laporan', $data, true);
 

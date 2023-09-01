@@ -1,28 +1,16 @@
-<?php 
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
 
-    public function getPengaduanMasuk()
+    public function laporan()
     {
-        $query = "SELECT `pengaduan`.*, `user`.`name`,`npm`
-                  FROM `pengaduan` JOIN `user`
-                  ON `pengaduan`.`user_id` = `user`.`id`
-                  WHERE `pengaduan`.`status` = '0'
-                ";
-        return $this->db->query($query)->result_array();
-    }
-
-    public function laporan_pengaduan()
-    {
-        $query = "SELECT `tanggapan`.*, `pengaduan`.*, `user`.*, `staff`.`staff`
-                  FROM `tanggapan` JOIN `pengaduan`
-                  ON `tanggapan`.`pengaduan_id` = `pengaduan`.`id`
-                  LEFT JOIN `user`
-                  ON `pengaduan`.`user_id` = `user`.`id`
-                  LEFT JOIN `staff`
-                  ON `tanggapan`.`kategori_id` = `staff`.`id`
+        $query = "SELECT `measurement_result`.*, `measurement`.`surfac_area`,`place_name`, `devices`.`token`
+                  FROM `measurement_result` JOIN `measurement`
+                  ON `measurement_result`.`measurement_id` = `measurement`.`id`
+                  LEFT JOIN `devices`
+                  ON `measurement_result`.`device_id` = `devices`.`id`
                 ";
         return $this->db->query($query)->result_array();
     }
