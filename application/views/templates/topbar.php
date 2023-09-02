@@ -19,7 +19,7 @@
                 <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="30" height="30">
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
+                <a href="<?= base_url('setting'); ?>" class="dropdown-item">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     My Profile
                 </a>

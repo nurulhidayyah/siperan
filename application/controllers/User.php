@@ -55,7 +55,11 @@ class User extends CI_Controller
         $data['title'] = 'Kondisi Lahan';
         $this->load->model('Device_model', 'kondisi');
         $data['kondisi'] = $this->kondisi->getDevicebyid($device, $user);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('user/condition', $data);
+        $this->load->view('templates/footer');
     }
 
     public function getDataFromLand()
@@ -69,7 +73,7 @@ class User extends CI_Controller
 
         $this->load->model('Device_model', 'kondisi');
         $data['kondisi'] = $this->kondisi->getDevicebyid($device, $user);
-        
+
         echo json_encode($data);
     }
 
@@ -81,13 +85,13 @@ class User extends CI_Controller
         $this->db->select('ph');
         $query = $this->db->get('devices')->row();
         if (empty($query)) {
-            redirect('user/mydevice'); 
+            redirect('user/mydevice');
         }
         $jumlah = $query->ph;
 
         $this->load->model('Penentuan_model', 'pengapuran');
         $data['pengapuran'] = $this->pengapuran->getRegression($jumlah);
-        
+
         $query = $this->db->select('*')
             ->from('measurement_result')
             ->order_by('created_at', 'DESC') // Assuming there's a 'created_at' column

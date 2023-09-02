@@ -26,52 +26,47 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
-                        <div class="col mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Pengapuran</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totalPengapuran; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                        <div class="col">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3><?= $totalPengapuran; ?></h3>
+
+                                    <p>Total Pengapuran</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Luas Lahan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totalLuasLahan; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-ruler fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                        <div class="col">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3><?= $totalLuasLahan; ?></h3>
+
+                                    <p>Total Luas Lahan</p>
                                 </div>
+                                <div class="icon">
+                                    <i class="fas fa-ruler fa-2x text-gray-300"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Rata-rata Kadar Keasaman</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $kadarKeasaman; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-chart-bar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                        <div class="col">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3><?= $kadarKeasaman; ?></h3>
+
+                                    <p>Rata-rata Kadar Keasaman</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-chart-bar fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
