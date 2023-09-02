@@ -20,8 +20,8 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('menu/index', $data);
             $this->load->view('templates/footer');
         } else {
@@ -88,8 +88,8 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() ==  false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('menu/submenu', $data);
             $this->load->view('templates/footer');
         } else {

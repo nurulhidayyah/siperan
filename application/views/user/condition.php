@@ -2,209 +2,205 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SIPERAN | <?= $title; ?></title>
 
-    <title><?= $title; ?></title>
-
-    <!-- Ajax untuk realtime -->
-    <script src="<?= base_url('jquery/jquery.min.js'); ?>"></script>
-
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
-
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/adminlte.min.css">
 </head>
 
-<body id="page-top">
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon">
-                    <i class="fas fa-tractor"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SIPERAN APP</div>
+                <!-- Profile Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                            <?= $user['name']; ?>
+                        </span>
+                        <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="30" height="30">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            My Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="<?= base_url('setting'); ?>" class="brand-link">
+                <i class="fas fa-tractor ml-3"></i>
+                <span class="brand-text font-weight-light mx-3">SIPERAN APP</span>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class=" elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"><?= $user['name']; ?></a>
+                    </div>
+                </div>
 
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-            <!-- QUERY MENU -->
-            <?php
-            $role_id = $this->session->userdata('role_id');
-            $queryMenu = "SELECT `user_menu`.`id`, `menu`
+                        <!-- QUERY MENU -->
+                        <?php
+                        $role_id = $this->session->userdata('role_id');
+                        $queryMenu = "SELECT `user_menu`.`id`, `menu`
                             FROM `user_menu` JOIN `user_access_menu`
                               ON `user_menu`.`id` = `user_access_menu`.`menu_id`
                            WHERE `user_access_menu`.`role_id` = $role_id
                         ORDER BY `user_access_menu`.`menu_id` ASC
                         ";
-            $menu = $this->db->query($queryMenu)->result_array();
-            ?>
+                        $menu = $this->db->query($queryMenu)->result_array();
+                        ?>
 
+                        <!-- LOOPING MENU -->
+                        <?php foreach ($menu as $m) : ?>
+                            <div class="user-panel">
+                                <li class="nav-header"><?= $m['menu']; ?></li>
 
-            <!-- LOOPING MENU -->
-            <?php foreach ($menu as $m) : ?>
-                <div class="sidebar-heading">
-                    <?= $m['menu']; ?>
-                </div>
+                                <!-- SIAPKAN SUB-MENU SESUAI MENU -->
+                                <?php
+                                $menuId = $m['id'];
+                                $querySubMenu = "SELECT *
+                                        FROM `user_sub_menu` JOIN `user_menu` 
+                                            ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+                                        WHERE `user_sub_menu`.`menu_id` = $menuId
+                                            AND `user_sub_menu`.`is_active` = 1
+                                                ";
+                                $subMenu = $this->db->query($querySubMenu)->result_array();
+                                ?>
 
-                <!-- SIAPKAN SUB-MENU SESUAI MENU -->
-                <?php
-                $menuId = $m['id'];
-                $querySubMenu = "SELECT *
-                               FROM `user_sub_menu` JOIN `user_menu` 
-                                 ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
-                              WHERE `user_sub_menu`.`menu_id` = $menuId
-                                AND `user_sub_menu`.`is_active` = 1
-                        ";
-                $subMenu = $this->db->query($querySubMenu)->result_array();
-                ?>
+                                <?php foreach ($subMenu as $sm) : ?>
 
-                <?php foreach ($subMenu as $sm) : ?>
-                    <?php if ($title == $sm['title']) : ?>
-                        <li class="nav-item active">
-                        <?php else : ?>
-                        <li class="nav-item">
-                        <?php endif; ?>
-                        <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
-                            <i class="<?= $sm['icon']; ?>"></i>
-                            <span><?= $sm['title']; ?></span></a>
-                        </li>
-                    <?php endforeach; ?>
+                                    <li class="nav-item">
+                                        <?php if ($title == $sm['title']) : ?>
+                                            <a href="<?= base_url($sm['url']); ?>" class="nav-link active">
+                                            <?php else : ?>
+                                                <a href="<?= base_url($sm['url']); ?>" class="nav-link">
+                                                <?php endif; ?>
+                                                <i class="<?= $sm['icon']; ?>"></i>
+                                                <p>
+                                                    <?= $sm['title']; ?>
+                                                </p>
+                                                </a>
+                                    </li>
+                                <?php endforeach; ?>
 
-                    <hr class="sidebar-divider mt-3">
-
-                <?php endforeach; ?>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
-                        <i class="fas fa-fw fa-sign-out-alt"></i>
-                        <span>Logout</span></a>
-                </li>
-
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
-        </ul>
-        <!-- End  of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?= $user['name']; ?>
-                                </span>
-                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
-
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    My Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <!-- <hr class="sidebar-divider mt-3"> -->
                             </div>
+
+                        <?php endforeach; ?>
+                        <li class="nav-item mb-5">
+                            <a class="nav-link" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-fw fa-sign-out-alt"></i>
+                                <span>Logout</span></a>
                         </li>
-
                     </ul>
-
                 </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
                 <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0"><?= $title; ?></h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            </section>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 mt-3 text-gray-800">Data Kondisi Lahan</h1>
-                    <!-- Content Column -->
-                    <div class="col-lg-3 mb-4">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 mb-4">
 
-                        <?php foreach ($kondisi as $k) : ?>
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Kadar Keasaman (Saat ini)</h6>
-                                    <h6 class="m-0 font-weight-bold text-primary" id="token"><?= $k['token']; ?></h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold text-center display-2" id="ph"><?= $k['ph']; ?></h4>
-                                    <div class="mb-3">
-                                        <h4 class="small font-weight-bold" id="date"><?= date('d M Y H:i:s', $k['date']); ?></h4>
+                            <?php foreach ($kondisi as $k) : ?>
+                                <!-- Project Card Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Kadar Keasaman (Saat ini)</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary" id="token"><?= $k['token']; ?></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="font-weight-bold text-center display-2" id="ph"><?= $k['ph']; ?></h4>
+                                        <div class="mb-3">
+                                            <h4 class="small font-weight-bold" id="date"><?= date('d M Y H:i:s', $k['date']); ?></h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
 
+                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white" style="margin-top: 35%;">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; SIPERAN <?= date('Y'); ?></span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.content-wrapper -->
+        <footer class="main-footer text-center">
+            <strong>Copyright &copy; 2023 <a href="#">SIPERAN</a>.</strong>
+            All rights reserved.
+        </footer>
 
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+    <!-- ./wrapper -->
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,25 +221,18 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- grafik pH -->
+    <script src="<?= base_url('assets/js/cdn.jsdelivr.net_npm_chart.js'); ?>" crossorigin="anonymous"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-
-    <!-- Ajax untuk realtime -->
-    <script src="<?= base_url('jquery/'); ?>jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
 
     <script>
         $(document).ready(function() {
             // atur interval waktu untuk realtime
 
             setInterval(function() {
-                fetch("http://192.168.137.1/siperan/user/getDataFromLand")
+                fetch("<?= base_url('user/getDataFromLand'); ?>")
                     .then(response => {
                         if (response.ok) {
                             return response.json();
@@ -283,7 +272,6 @@
                             token.innerHTML = phData.token;
                             date.innerHTML = formattedDateTime;
                         });
-                        console.log(data);
                     })
                     .catch(error => {
                         console.log(error)
@@ -292,32 +280,12 @@
                 // $('#cekph').load("<?php echo site_url('user/getDataFromLand') ?>");
             }, 1000); //untuk satu detik
         });
-
-        $('.custom-file-input').on('change', function() {
-            let fileName = $(this).val().split('\\').pop();
-            $(this).next('.custom-file-label').addClass("selected").html(fileName);
-        });
-
-
-
-        $('.form-check-input1').on('click', function() {
-            const menuId = $(this).data('menu');
-            const roleId = $(this).data('role');
-
-            $.ajax({
-                url: "<?= base_url('admin/changeaccess'); ?>",
-                type: 'post',
-                data: {
-                    menuId: menuId,
-                    roleId: roleId
-                },
-                success: function() {
-                    document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
-                }
-            });
-
-        });
     </script>
+
+    <!-- Bootstrap 4 -->
+    <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 
 </body>
 

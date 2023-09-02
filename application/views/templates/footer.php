@@ -1,221 +1,200 @@
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto text-gray-600">
-                        <span>Copyright &copy; SIPERAN <?= date('Y'); ?></span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+<footer class="main-footer text-center">
+    <strong>Copyright &copy; 2023 <a href="#">SIPERAN</a>.</strong>
+    All rights reserved.
+</footer>
 
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <!-- End of Content Wrapper -->
-
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
             </div>
-            <!-- End of Page Wrapper -->
+        </div>
+    </div>
+</div>
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+<!-- grafik pH -->
+<script src="<?= base_url('assets/js/cdn.jsdelivr.net_npm_chart.js'); ?>" crossorigin="anonymous"></script>
 
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- jQuery -->
+<script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?= base_url('assets/'); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/jszip/jszip.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 
-            <!-- grafik pH -->
-            <script src="<?= base_url('assets/js/cdn.jsdelivr.net_npm_chart.js'); ?>" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '<?= base_url('grafik/getAverage'); ?>',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                var dataFromDatabase = response;
+                var labels = [];
+                var values = [];
 
-            <script>
-                $(document).ready(function() {
-                    $.ajax({
-                        url: '<?= base_url('user/getAverage'); ?>',
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            var dataFromDatabase = response;
-                            var labels = [];
-                            var values = [];
-
-                            $.each(dataFromDatabase.average_jan, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_feb, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_mar, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_apr, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_mei, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_june, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_july, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_august, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_sept, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_okt, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_nov, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            $.each(dataFromDatabase.average_des, function(index, data) {
-                                labels.push(data.month);
-                                values.push(data.average);
-                            });
-
-                            var pHData = {
-                                labels: labels,
-                                datasets: [{
-                                    label: "pH Tanah",
-                                    data: values,
-                                    backgroundColor: "rgba(52, 152, 219, 0.5)"
-                                }]
-                            };
-
-                            var ctx = document.getElementById("pHChart").getContext("2d");
-                            var pHChart = new Chart(ctx, {
-                                type: "line",
-                                data: pHData
-                            });
-
-                            console.log(dataFromDatabase);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                });
-            </script>
-
-            <!-- Bootstrap core JavaScript-->
-            <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
-            <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-            <!-- Core plugin JavaScript-->
-            <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
-            <!-- Custom scripts for all pages-->
-            <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-
-            <!-- Ajax untuk realtime -->
-            <script src="<?= base_url('jquery/'); ?>jquery.min.js"></script>
-
-            <script>
-                $('.custom-file-input').on('change', function() {
-                    let fileName = $(this).val().split('\\').pop();
-                    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+                $.each(dataFromDatabase.average_jan, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
                 });
 
-
-
-                $('.form-check-input1').on('click', function() {
-                    const menuId = $(this).data('menu');
-                    const roleId = $(this).data('role');
-
-                    $.ajax({
-                        url: "<?= base_url('admin/changeaccess'); ?>",
-                        type: 'post',
-                        data: {
-                            menuId: menuId,
-                            roleId: roleId
-                        },
-                        success: function() {
-                            document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
-                        }
-                    });
-
+                $.each(dataFromDatabase.average_feb, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
                 });
-            </script>
 
-            <!-- DataTables -->
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-
-            <!-- DataTable -->
-            <script>
-                $(document).ready(function() {
-                    // Hentikan DataTable sebelumnya (jika ada)
-                    if ($.fn.DataTable.isDataTable('#dataTable')) {
-                        $('#dataTable').DataTable().destroy();
-                    }
-                    // Inisialisasi DataTables
-                    var table = $('#dataTable').DataTable({
-                        "bFilter": true, // Aktifkan filter
-                        "bInfo": false, // Sembunyikan informasi tabel
-                        "columnDefs": [{
-                            "searchable": true,
-                        }] // Kolom yang bisa di-filter
-                    });
-
-                    // Inisialisasi input filter
-                    $('#filterNamaTempat').on('keyup', function() {
-                        table.columns(1).search(this.value).draw();
-                    });
-                    $('#filterLuasLahan').on('keyup', function() {
-                        table.columns(2).search(this.value).draw();
-                    });
-                    $('#filterKadarKeasaman').on('keyup', function() {
-                        table.columns(3).search(this.value).draw();
-                    });
-                    $('#filterJumlahPengapuran').on('keyup', function() {
-                        table.columns(4).search(this.value).draw();
-                    });
-                    $('#filterBulan').on('keyup', function() {
-                        table.columns(5).search(this.value).draw();
-                    });
-
+                $.each(dataFromDatabase.average_mar, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
                 });
-            </script>
-            </body>
 
-            </html>
+                $.each(dataFromDatabase.average_apr, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_mei, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_june, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_july, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_august, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_sept, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_okt, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_nov, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                $.each(dataFromDatabase.average_des, function(index, data) {
+                    labels.push(data.month);
+                    values.push(data.average);
+                });
+
+                var pHData = {
+                    labels: labels,
+                    datasets: [{
+                        label: "pH Tanah",
+                        data: values,
+                        backgroundColor: "rgba(52, 152, 219, 0.5)"
+                    }]
+                };
+
+                var ctx = document.getElementById("pHChart").getContext("2d");
+                var pHChart = new Chart(ctx, {
+                    type: "line",
+                    data: pHData
+                });
+
+                console.log(dataFromDatabase);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
+
+<!-- Page specific script -->
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+<script>
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
+
+
+    $('.form-check-input1').on('click', function() {
+        const menuId = $(this).data('menu');
+        const roleId = $(this).data('role');
+
+        $.ajax({
+            url: "<?= base_url('admin/changeaccess'); ?>",
+            type: 'post',
+            data: {
+                menuId: menuId,
+                roleId: roleId
+            },
+            success: function() {
+                document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
+            }
+        });
+
+    });
+</script>
+
+</body>
+
+</html>

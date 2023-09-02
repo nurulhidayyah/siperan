@@ -1,40 +1,52 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-
-    <div class="row">
-        <div class="col-lg-8">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-
-            <?= $this->session->flashdata('message'); ?>
-        </div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0"><?= $title; ?></h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content-header -->
 
-    <div class="card mb-3 col-lg-8">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
 
-                    <h5 class="card-title"><?= $user['name']; ?></h5>
-                    <p class="card-text"><?= $user['email']; ?></p>
-                    <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small></p>
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <div style="overflow: hidden; height: 100px;">
+                                    <img class="profile-user-img img-fluid" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" alt="User profile picture" width="100">
+                                </div>
+                            </div>
 
+                            <h3 class="profile-username text-center"><?= $user['name']; ?></h3>
+
+                            <strong><i class="fas fa-envelope"></i> Email</strong>
+
+                            <p class="text-muted">
+                                <?= $user['email']; ?><br>
+                                registered since <?= date('d F Y', $user['date_created']); ?>
+                            </p>
+
+                            <hr>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
+                <!-- /.col -->
             </div>
-        </div>
-    </div>
-
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
+<!-- /.content-wrapper -->

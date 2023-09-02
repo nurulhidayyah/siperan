@@ -20,8 +20,8 @@ class Admin extends CI_Controller
         $data['kadarKeasaman'] = $this->dashboard->getDataPh();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
@@ -35,8 +35,8 @@ class Admin extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/role', $data);
         $this->load->view('templates/footer');
     }
@@ -58,8 +58,8 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('users/index', $data);
             $this->load->view('templates/footer');
         } else {
@@ -142,8 +142,8 @@ class Admin extends CI_Controller
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/role-access', $data);
         $this->load->view('templates/footer');
     }
@@ -180,8 +180,8 @@ class Admin extends CI_Controller
         $data['laporan'] = $this->laporan->laporan();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/laporan', $data);
         $this->load->view('templates/footer');
     }
@@ -218,8 +218,8 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('admin/learning', $data);
             $this->load->view('templates/footer');
         } else {
@@ -311,8 +311,8 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('admin/devices', $data);
             $this->load->view('templates/footer');
         } else {
@@ -350,7 +350,7 @@ class Admin extends CI_Controller
             $token = htmlspecialchars($this->input->post('token'), TRUE);
             
             $this->db->set('token', $token);
-            $this->db->set('date_created', time());
+            $this->db->set('date', time());
             $this->db->where('id', $id);
             $this->db->update('devices');
 

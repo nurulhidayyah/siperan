@@ -29,8 +29,8 @@ class User extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('user/device', $data);
             $this->load->view('templates/footer');
         } else {
@@ -73,28 +73,6 @@ class User extends CI_Controller
         echo json_encode($data);
     }
 
-    public function getAverage()
-    {
-        $this->load->model('Average_model', 'average');
-
-        $data = [
-            'average_jan' => $this->average->getAverageForMonth(1),
-            'average_feb' => $this->average->getAverageForMonth(2),
-            'average_mar' => $this->average->getAverageForMonth(3),
-            'average_apr' => $this->average->getAverageForMonth(4),
-            'average_mei' => $this->average->getAverageForMonth(5),
-            'average_june' => $this->average->getAverageForMonth(6),
-            'average_july' => $this->average->getAverageForMonth(7),
-            'average_august' => $this->average->getAverageForMonth(8),
-            'average_sept' => $this->average->getAverageForMonth(9),
-            'average_okt' => $this->average->getAverageForMonth(10),
-            'average_nov' => $this->average->getAverageForMonth(11),
-            'average_des' => $this->average->getAverageForMonth(12),
-        ];
-
-        echo json_encode($data);
-    }
-
     public function penentuan()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -123,8 +101,8 @@ class User extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('user/pengapuran', $data);
             $this->load->view('templates/footer');
             // $this->load->view('user/ujicoba', $data);
@@ -184,8 +162,8 @@ class User extends CI_Controller
         $data['result'] = $this->result->getResult();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('user/history', $data);
         $this->load->view('templates/footer');
     }

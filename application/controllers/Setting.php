@@ -16,8 +16,8 @@ class Setting extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $email])->row_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('setting/index', $data);
         $this->load->view('templates/footer');
     }
@@ -35,8 +35,8 @@ class Setting extends CI_Controller
 
             if ($this->form_validation->run() == false) {
                 $this->load->view('templates/header', $data);
-                $this->load->view('templates/sidebar', $data);
                 $this->load->view('templates/topbar', $data);
+                $this->load->view('templates/sidebar', $data);
                 $this->load->view('setting/edit', $data);
                 $this->load->view('templates/footer');
             } else {
@@ -87,8 +87,8 @@ class Setting extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('setting/changepassword', $data);
             $this->load->view('templates/footer');
         } else {
