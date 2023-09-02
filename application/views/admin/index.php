@@ -52,7 +52,6 @@
                                 <div class="icon">
                                     <i class="fas fa-ruler fa-2x text-gray-300"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

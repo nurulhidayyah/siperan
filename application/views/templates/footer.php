@@ -139,8 +139,6 @@
                     type: "line",
                     data: pHData
                 });
-
-                console.log(dataFromDatabase);
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -241,7 +239,6 @@
                         token.innerHTML = phData.token;
                         date.innerHTML = formattedDateTime;
                     });
-                    console.log(data);
                 })
                 .catch(error => {
                     console.log(error)
