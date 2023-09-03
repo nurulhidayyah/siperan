@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 09:06 AM
+-- Generation Time: Sep 04, 2023 at 06:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -43,16 +43,16 @@ CREATE TABLE `determination` (
 --
 
 INSERT INTO `determination` (`id`, `ph_min`, `ph_max`, `calcification`, `total`, `x_kuadrat`, `y_kuadrat`, `xy`) VALUES
+(1, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
 (2, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(3, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(4, 5.4, 7, 2250, 0.36, 29.16, 0.1296, 1.944),
-(5, 5.6, 7, 2250, 0.315, 31.36, 0.099225, 1.764),
-(6, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(7, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(8, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(9, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(10, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
-(11, 5.2, 7, 2250, 0.405, 27.04, 0.164025, 2.106);
+(3, 5.4, 7, 2250, 0.36, 29.16, 0.1296, 1.944),
+(4, 5.6, 7, 2250, 0.315, 31.36, 0.099225, 1.764),
+(5, 5.5, 7, 2250, 0.3375, 30.25, 0.113906, 1.85625),
+(6, 5.2, 7, 2250, 0.405, 27.04, 0.164025, 2.106),
+(7, 5.3, 7, 2250, 0.3825, 28.09, 0.146306, 2.02725),
+(8, 5.1, 7, 2250, 0.4275, 26.01, 0.182756, 2.18025),
+(9, 5, 7, 2250, 0.45, 25, 0.2025, 2.25),
+(10, 5.4, 7, 2250, 0.36, 29.16, 0.1296, 1.944);
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE `devices` (
 --
 
 INSERT INTO `devices` (`id`, `token`, `ph`, `date`) VALUES
-(1, '25FDnN8N2hMzY6hP', NULL, '1693533418');
+(1, '25FDnN8N2hMzY6hP', 6.76, '1693646040');
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,22 @@ CREATE TABLE `measurement` (
   `created_at` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `measurement`
+--
+
+INSERT INTO `measurement` (`id`, `user_id`, `surfac_area`, `place_name`, `created_at`) VALUES
+(1, 6, 10000, 'Sawah Luhur', '1693645843'),
+(2, 6, 10000, 'Sawah Luhur', '1693645888'),
+(3, 6, 10000, 'Jawilan', '1693645903'),
+(4, 6, 10000, 'Jawilan', '1693645918'),
+(5, 6, 10000, 'Ciruas', '1693645943'),
+(6, 6, 10000, 'Ciruas', '1693645949'),
+(7, 6, 10000, 'Kasemen', '1693645959'),
+(8, 6, 10000, 'Kasemen', '1693646003'),
+(9, 6, 10000, 'pontang', '1693646028'),
+(10, 6, 10000, 'pontang', '1693646099');
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +118,22 @@ CREATE TABLE `measurement_result` (
   `score` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `measurement_result`
+--
+
+INSERT INTO `measurement_result` (`id`, `measurement_id`, `device_id`, `ph`, `score`, `created_at`) VALUES
+(1, 1, 1, 1.84, 11610, '2023-01-02 09:10:43'),
+(2, 2, 1, 3.23, 8482, '2023-02-02 09:11:28'),
+(3, 3, 1, 1.77, 11767, '2023-03-02 09:11:43'),
+(4, 4, 1, 6.69, 698, '2023-04-02 09:11:58'),
+(5, 5, 1, 6.69, 698, '2023-05-02 09:12:23'),
+(6, 6, 1, 6.69, 698, '2023-06-02 09:12:29'),
+(7, 7, 1, 6.69, 698, '2023-07-02 09:12:39'),
+(8, 8, 1, 0.52, 14580, '2023-08-02 09:13:23'),
+(9, 9, 1, 6.76, 540, '2023-08-02 09:13:48'),
+(10, 10, 1, 6.76, 540, '2023-09-02 09:14:59');
 
 -- --------------------------------------------------------
 
@@ -125,7 +157,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `device_id`, `date_created`) VALUES
-(6, 'Nurul', 'nurulhidayyah45@gmail.com', 'default.jpg', '$2y$10$fgN4fLu1Lw9h5.KfuVFv9.DCLzDKvLlW/390Pgzh2HAENxlLw7zAq', 1, 1, 1690909502),
+(6, 'Nurul Hidayah', 'nurulhidayyah45@gmail.com', 'default.jpg', '$2y$10$fgN4fLu1Lw9h5.KfuVFv9.DCLzDKvLlW/390Pgzh2HAENxlLw7zAq', 1, 1, 1690909502),
 (17, 'Paik Hidayah', 'paikhidayah@gmail.com', 'default.jpg', '$2y$10$Rc5XRDEV5b7bIEKhbHhjpuMQBhayxVTy2RoGSNlsoEqLfPlr63LYS', 2, 1, 1692110302);
 
 -- --------------------------------------------------------
@@ -147,12 +179,11 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (4, 2, 2),
-(11, 1, 6),
 (12, 2, 6),
 (13, 3, 5),
 (14, 3, 6),
-(16, 1, 3),
-(21, 1, 2);
+(28, 1, 3),
+(30, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -315,43 +346,43 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `determination`
 --
 ALTER TABLE `determination`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `measurement`
 --
 ALTER TABLE `measurement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `measurement_result`
 --
 ALTER TABLE `measurement_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_role`

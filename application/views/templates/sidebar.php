@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?= base_url('setting'); ?>" class="brand-link">
-        <i class="fas fa-tractor ml-3"></i>
-        <span class="brand-text font-weight-light mx-3">SIPERAN APP</span>
+        <img src="<?= base_url('assets/img/padi.png'); ?>" alt="Padi" width="70 ">
+        <span class="brand-text font-weight-bold">SIPERAN APP</span>
     </a>
 
     <!-- Sidebar -->
