@@ -27,7 +27,7 @@
 
                 <!-- LOOPING MENU -->
                 <?php foreach ($menu as $m) : ?>
-                    <div class="user-panel">
+                    <div class="user-panel text-uppercase">
                         <li class="nav-header"><?= $m['menu']; ?></li>
 
                         <!-- SIAPKAN SUB-MENU SESUAI MENU -->
