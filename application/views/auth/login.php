@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>SIATPENDUK - LOGIN</title>
+    <title>SIPERAN | <?= $title; ?></title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                 <div class="card-wrapper">
                     <div class="card fat">
                         <div class="card-body">
-                            <h4 class="card-title">Login <span class="text-core">SIATPENDUK</span></h4>
+                            <h4 class="card-title text-center">Login</h4>
                             <?= $this->session->flashdata('message'); ?>
 
                             <form method="post" action="<?= base_url('auth'); ?>">
