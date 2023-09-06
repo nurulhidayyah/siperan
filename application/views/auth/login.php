@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="<?= base_url('assets/'); ?>img/logo_small.png">
+    <link rel="shortcut icon" href="<?= base_url('assets/'); ?>img/padi.png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/login.css">

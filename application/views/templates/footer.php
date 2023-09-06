@@ -148,13 +148,23 @@
 
 <!-- Page specific script -->
 <script>
-    $(function() {
-        $("#example1").DataTable({
+    $(document).ready(function() {
+        var table = $('#example1').DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "Semua"]
+            ],
+            // buttons: [
+            //     'copy', 'csv', 'excel', 'pdf', 'print'
+            // ]
+        });
+
+        // table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        var table2 = $('#example2').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -163,8 +173,30 @@
             "autoWidth": false,
             "responsive": true,
         });
+
+        // Inisialisasi input filter
+        $('#filterNamaTempat').on('keyup', function() {
+            table.column(1).search(this.value).draw();
+        });
+
+        $('#filterLuasLahan').on('keyup', function() {
+            table.column(2).search(this.value).draw();
+        });
+
+        $('#filterKadarKeasaman').on('keyup', function() {
+            table.column(3).search(this.value).draw();
+        });
+
+        $('#filterJumlahPengapuran').on('keyup', function() {
+            table.column(4).search(this.value).draw();
+        });
+
+        $('#filterBulan').on('keyup', function() {
+            table.column(5).search(this.value).draw();
+        });
     });
 </script>
+
 
 <script>
     $('.custom-file-input').on('change', function() {
@@ -190,61 +222,6 @@
             }
         });
 
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        // atur interval waktu untuk realtime
-
-        setInterval(function() {
-            fetch("<?= base_url('user/getDataFromLand'); ?>")
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                })
-                .then(data => {
-                    // console.log(data.kondisi);
-                    data.kondisi.forEach(phData => {
-                        const ph = document.getElementById("ph");
-                        const token = document.getElementById("token");
-                        const date = document.getElementById("date");
-
-                        const unixTimestamp = parseInt(phData.date); // Replace with your Unix timestamp
-
-                        // Convert Unix timestamp to milliseconds
-                        const milliseconds = unixTimestamp * 1000;
-
-                        // Create a Date object using the milliseconds
-                        const dateObject = new Date(milliseconds);
-
-                        const day = dateObject.toLocaleString('default', {
-                            day: '2-digit'
-                        });
-                        const month = dateObject.toLocaleString('default', {
-                            month: 'short'
-                        });
-                        const year = dateObject.getFullYear();
-                        const hour = dateObject.getHours();
-                        const minute = dateObject.getMinutes();
-                        const second = dateObject.getSeconds().toString().padStart(2, '0');
-
-                        // Format the components as a string
-                        const formattedDateTime = day + ' ' + month + ' ' + year + ' ' + hour + ':' + minute + ':' + second;
-
-
-                        ph.innerHTML = phData.ph;
-                        token.innerHTML = phData.token;
-                        date.innerHTML = formattedDateTime;
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-
-            // $('#cekph').load("<?php echo site_url('user/getDataFromLand') ?>");
-        }, 1000); //untuk satu detik
     });
 </script>
 

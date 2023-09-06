@@ -24,6 +24,24 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <!-- Input filter -->
+                            <!-- <div class="form-row mb-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" id="filterNamaTempat" placeholder="Nama Tempat">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="filterLuasLahan" placeholder="Luas Lahan">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="filterKadarKeasaman" placeholder="Kadar Keasaman">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="filterJumlahPengapuran" placeholder="Jumlah Pengapuran">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="filterBulan" placeholder="Bulan">
+                                </div>
+                            </div> -->
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
