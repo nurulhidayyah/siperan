@@ -11,7 +11,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        redirect('setting');
+        redirect('user/land');
     }
 
     public function mydevice()

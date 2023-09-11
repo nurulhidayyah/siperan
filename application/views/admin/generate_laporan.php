@@ -224,6 +224,22 @@
                     <div class="invoice overflow-auto">
                         <div style="min-width: 600px">
                             <main>
+                                <table style="border-bottom: 5px solid #000; border-style: outset;">
+                                    <tr>
+                                        <td colspan="2" width="150" style="padding-left: 100px;">
+                                            <center><img src="<?= base_url('assets'); ?>/img/logo.png" width="100" alt=""></center>
+                                        </td>
+                                        <!-- <td></td> -->
+                                        <td colspan="10" width="500" style="padding-right: 100px;">
+                                            <center>
+                                                <font style="font-size: 22px; font-weight: bold;">PEMERINTAH PROVINSI BANTEN</font><br>
+                                                <font style="font-size: 25px; font-weight: bold;">DINAS PERTANIAN</font><br>
+                                                <font style="font-size: 22px; font-weight: bold;">UPTD BENIH DAN PERLINDUNGAN TANAMAN PANGAN HORTIKULTURA DAN PERKEBUNAN</font> <br>
+                                                <font style="font-size: 13px;">Alamat : Jl. SawahLuhur Pos Km. 07 Kelurahan SawahLuhur Kasemen Kota Serang Provinsi Banten</font>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <table>
                                     <thead>
                                         <tr>
@@ -260,3 +276,18 @@
             </div>
         </div>
     </div>
+    <table style="text-align: left">
+        <tr>
+            <th align="text-left">Keterangan</th>
+        </tr>
+        <tr>
+            <td>Kadar Keasaman</td>
+            <td>:</td>
+            <td>Nilai yang dihasilkan alat sensor pH</td>
+        </tr>
+        <tr>
+            <td>Jumlah Pengapuran</td>
+            <td>:</td>
+            <td>Hasil dari penentuan kapur pertanian yang harus diberikan</td>
+        </tr>
+    </table>

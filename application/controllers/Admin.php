@@ -225,7 +225,7 @@ class Admin extends CI_Controller
         } else {
             $ph_min = htmlspecialchars($this->input->post('ph_min', true));
             $ph_max = htmlspecialchars($this->input->post('ph_max', true));
-            $calcification = htmlspecialchars($this->input->post('calcification', true));
+            $calcification = htmlspecialchars($this->input->post('calcification', true)) / ($ph_max - $ph_min);
             $total = (($ph_max - $ph_min) * $calcification) / 10000;
             $x_kuadrat = $ph_min * $ph_min;
             $y_kuadrat = $total * $total;
@@ -248,6 +248,25 @@ class Admin extends CI_Controller
         }
     }
 
+    
+    public function generate_datalatih()
+    {
+        $data['title'] = 'Laporan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['latih'] = $this->db->get('determination')->result_array();
+
+        $html = $this->load->view('admin/generate_datalatih', $data, true);
+
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'orientation' => 'portrait',
+            'margin' => 0
+        ]);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
     public function learnEdit($id)
     {
         $data['title'] = 'Data Latih';
@@ -268,7 +287,7 @@ class Admin extends CI_Controller
         } else {
             $ph_min = htmlspecialchars($this->input->post('ph_min', true));
             $ph_max = htmlspecialchars($this->input->post('ph_max', true));
-            $calcification = htmlspecialchars($this->input->post('calcification', true));
+            $calcification = htmlspecialchars($this->input->post('calcification', true)) / ($ph_max - $ph_min);
             $total = (($ph_max - $ph_min) * $calcification) / 10000;
             $x_kuadrat = $ph_min * $ph_min;
             $y_kuadrat = $total * $total;
